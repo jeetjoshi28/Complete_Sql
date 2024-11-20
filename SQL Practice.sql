@@ -199,3 +199,5 @@ select * from student;
 
 
 -- added
+
+update student set marks = marks + 1;
