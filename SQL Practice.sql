@@ -196,3 +196,6 @@ SET SQL_SAFE_UPDATES = 0;
 
 update student set grade = "o" where grade = "A";
 select * from student;
+
+
+-- added
