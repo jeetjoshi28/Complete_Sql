@@ -201,3 +201,17 @@ select * from student;
 -- added
 
 update student set marks = marks + 1;
+
+
+-- Delete it is use for delete rows in table 
+-- SYNTEX
+-- DELETE FROM table_name WHERE condition;
+
+update student set marks  = 12 where roll_no = 105;
+update student set grade = F where roll_no = 105;
+
+select * from student;
+
+delete from student where marks < 33;
+
+select * from student;
