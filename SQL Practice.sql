@@ -410,3 +410,126 @@ student as s
 left join course as c
 on s.id = c.id 
 where c.id is null;
+
+
+-- Right Exclusive join 
+select * from 
+student as s
+right join course as c
+on s.id = c.id
+where s.id is null;
+
+-- self join 
+-- It is a regular join but the table is joined with itself
+
+-- SYNTEX
+-- SELECT column(s)
+-- FROM table as a 
+-- JOIN table as b 
+-- ON a.col_name = b.col_name;
+
+create table employee(
+	id int primary key,
+    name varchar(50),
+    manager_id int
+);
+
+insert into employee (id , name , manager_id) 
+values
+(101, "Adam" , 103),
+(102, "Bob" , 104),
+(103, "Casey" , NULL),
+(104, "Donal" , "103");
+
+select * from employee;
+
+select a.name as manager_name , b.name from 
+employee as a 
+join employee as b
+on a.id = b.manager_id;
+
+-- SQL sun query
+-- A subquery or inner query or nested query is a query within another sql query
+-- it involves 2 select statements
+
+-- SYNTEX
+-- SELECT column(s)
+-- FROM table_name
+-- WHERE col_name operator
+-- (subquery);
+
+-- Example
+-- Get names of all students who scored more than class average
+-- step 1 :- Find the avg of class
+-- step 2 :- Find the names of student with marks > avg
+
+
+select * from student;
+
+create table student_data(
+	roll_no int primary key,
+	name varchar(50),
+    marks int not null,
+    grade varchar(1),
+    city varchar(20)
+);
+
+insert into student_data (roll_no , name , marks , grade , city) 
+	values 
+		(101, "anil" , 78 , "C" , "Pune"), 
+		(102,"Bhumika" , 93, "A" , "Mumbai"),
+        (103, "Chetan" , 85 , "B" , "Mumbai"),
+        (104, "Dhruv" , 96 , "A" , "Delhi"),
+        (105, "Emanuel" , 12,  "F" , "Delhi"),
+        (106 , "Farah" , 82 , "B" , "Delhi");
+        
+select * from student_data;
+
+-- step 1
+select avg(marks) from student_data;
+
+-- step 2
+select name, marks from student_data where marks > 74.33;
+
+
+-- sub query 
+select name, marks from student_data 
+where marks > (select avg(marks) from student_data);
+
+
+-- Example
+-- Find the names of all students with even roll numbers
+-- step 1 Find the even roll numbers
+-- step 2 Find the names of students with even roll no
+
+select * from student_data;
+
+-- step 1
+select roll_no from student_data where roll_no % 2 = 0;
+
+select roll_no, name 
+from student_data 
+where roll_no in 
+	(
+		select roll_no from student_data where roll_no % 2 = 0
+    );
+    
+-- Example using from
+-- Find the max marks from the students of delhi
+
+-- step 1 :- Find the student of delhi
+-- step 2 :- find their max marks using the sublist in step 1
+
+select * from student_data where city = "Delhi";
+
+
+-- way 1
+select max(marks) 
+from (select * from student_data where city = "Delhi") as temp;
+
+
+-- way 2 
+select max(marks) from 
+student_data where city = "Delhi";
+
+
