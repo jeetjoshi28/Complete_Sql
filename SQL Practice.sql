@@ -309,3 +309,97 @@ SET SQL_SAFE_UPDATES = 0;
 
 -- Answer C
 alter table student drop column grade;
+
+-- JOINS IN SQL
+-- Inner join
+-- Return records that have matching values in both tables
+-- STNTEX
+
+-- SELECT column(s) 
+-- FROM table A 
+-- INNER JOIN table B
+-- ON tableA.col_name = tableB.col_name;
+
+create database college;
+use college;
+
+create table student(
+	id int primary key,
+    name varchar(50)
+);
+
+insert into student (id, name) 
+	values 
+	(101 , "Adam"), 
+    (102, "Bob"),
+    (103, "Casey");
+    
+select * from student;
+
+create table course(
+	id int primary key,
+	course varchar(50)
+);
+
+insert into course (id , course) 
+	values
+    (102, "English"), 
+    (105,"Math"),
+    (103, "Science"),
+    (107,"Computer Science");
+    
+select * from course;
+
+select * from student inner join course on student.id = course.id;
+
+select * from 
+student as s
+inner join course as c 
+on s.id = c.id;
+
+-- Left join 
+-- Return all record from the left table, and the matched records from the right table
+
+-- SYNTEX
+-- SELECT column(s)
+-- FROM tableA
+-- LEFT JOIN tableB
+-- ON tableA.col_name = tableB.col_name;
+
+select * from 
+student as s
+left join course as c
+on s.id = c.id;
+
+-- Right join
+-- Return all record from the right table, and the matched records from the left table
+
+-- SYNTEX
+-- SELECT column(s)
+-- FROM tableA
+-- RIGHT JOIN tableB
+-- ON tableA.col_name = tableB.col_name;
+
+select * from 
+student as s
+right join course as c
+on s.id = c.id;
+
+
+-- FULL join
+-- Return all record when there is a match in either left or right table
+-- in MYSQL full join statement or command are not exist but in oracle or postgresql full join commmand or statement are exist
+
+-- in MYSQL we can perform full join using left join and right join then are union then we get the result of the full join
+-- union give the unique data of the both table not generate the duplicate data 
+
+select * from 
+student as s 
+left join course as c
+on s.id = c.id
+union
+select * from 
+student as s
+right join course as c
+on s.id = c.id;
+
