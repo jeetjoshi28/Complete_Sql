@@ -403,3 +403,10 @@ student as s
 right join course as c
 on s.id = c.id;
 
+
+-- Left Exclusive join
+select * from 
+student as s
+left join course as c
+on s.id = c.id 
+where c.id is null;
