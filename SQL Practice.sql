@@ -533,3 +533,17 @@ select max(marks) from
 student_data where city = "Delhi";
 
 
+-- sql sub query using select
+select (select max(marks) from student_data), name from student_data;
+
+-- MySQL Views
+-- A view is a virtual table based on the result-set of an sql statement
+
+create view view1 as 
+select roll_no , name , marks from student_data;
+
+select * from view1;
+
+select * from view1 where marks > 90;
+
+drop view view1;
