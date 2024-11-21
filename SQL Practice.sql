@@ -289,3 +289,23 @@ select * from student;
 -- Drop is delete the table with schema and Truncate is delete the table data not table schema if we want to re-enter the data in the table so we can do this uaing the help of truncate
 
 truncate table student;
+
+-- practice question 
+-- QS in the student table:
+	-- A. change the name of column "name" to "full_name"
+    -- B. Delete all the students who scored marks less than 80
+    -- C. Delete the column for grades.alter
+    
+-- Answer A
+
+alter table student change name full_name varchar(50);
+
+select * from student;
+
+-- Answer B  
+delete from student where marks < 80;
+
+SET SQL_SAFE_UPDATES = 0;
+
+-- Answer C
+alter table student drop column grade;
