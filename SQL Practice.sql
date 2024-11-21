@@ -234,3 +234,58 @@ create table teacher(
     on delete cascade
 );
 
+insert into dept values (101,"English"), (102,"IT");
+
+select * from dept;
+
+update dept set dept_id = 103 where dept_id = 102;
+
+insert into teacher values (101,"Adam" , 101), (102,"Eve" , 102);
+
+select * from teacher;
+
+drop table teacher;
+
+
+-- Alter command it is use for the change the schema of the table schema means design 
+-- add column 
+-- SYNTEX
+-- ALTER TABLE table_name ADD COLUMN column_name datatype constraint;
+
+alter table student add column age int;
+
+select * from student;
+
+-- DROP column 
+-- SYNTEX
+-- ALTER TABLE table_name DROP COLUMN column_name;
+
+alter table student drop column age;
+
+-- alter operations
+alter table student add column age int not null default 19;
+
+alter table student modify column age varchar(2);
+
+
+-- give the error beacause we are trying to store large value our data type is varchar(2) and we are trying to store the value of 100 it is not possible that why gives the error
+insert into student (roll_no , name ,  marks ,stu_age)
+values (107, "Gargi" , 68 , 100);
+
+alter table student change age stu_age int;
+
+
+select * from student;
+
+alter table student drop column age;
+
+alter table student rename to student_data;
+alter table student_data rename to student;
+
+select * from student;
+
+
+-- IMPORTANT DIFFERENT DROP vs TRUNCATE
+-- Drop is delete the table with schema and Truncate is delete the table data not table schema if we want to re-enter the data in the table so we can do this uaing the help of truncate
+
+truncate table student;
