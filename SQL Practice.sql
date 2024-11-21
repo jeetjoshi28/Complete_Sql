@@ -215,3 +215,22 @@ select * from student;
 delete from student where marks < 33;
 
 select * from student;
+
+
+-- FK 
+use university;
+
+create table dept (
+	dept_id int primary key,
+    name varchar(50)
+);
+
+create table teacher(
+	id int primary key,
+    name varchar(50),
+    dept_id int,
+    foreign key (dept_id) references dept(dept_id)
+    on update cascade
+    on delete cascade
+);
+
